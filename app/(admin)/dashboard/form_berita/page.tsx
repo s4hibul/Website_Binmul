@@ -193,25 +193,184 @@
 
 // export default FormBerita;
 
+// "use client"
+
+// import React, { useState } from "react";
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
+// import axios from "axios";
+// import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+
+// function FormBerita() {
+//     const [images, setImages] = useState<File[]>([]);
+//     const [deskripsi, setDeskripsi] = useState<string>("");
+//     const [judul, setJudul] = useState<string>("");
+//     const [loading, setLoading] = useState<boolean>(false);
+
+//     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//         if (event.target.files) {
+//             const selectedImages = Array.from(event.target.files).slice(0, 3); // Maksimal 3 gambar
+//             setImages(selectedImages);
+//         }
+//     };
+
+//     const handleDeskripsiChange = (value: string) => {
+//         setDeskripsi(value);
+//     };
+
+//     const handleJudulChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//         setJudul(event.target.value);
+//     };
+
+//     const handleSubmit = async (event: React.FormEvent) => {
+//         event.preventDefault();
+//         try {
+//             setLoading(true); // menunjukkan bahwa proses loading dimulai
+//             const formData = new FormData();
+//             formData.append("deskripsi", deskripsi);
+//             formData.append("judul", judul);
+
+//             if (images.length > 0) {
+//                 for (let i = 0; i < images.length; i++) {
+//                     formData.append(`image${i + 1}`, images[i]);
+//                 }
+//             }
+
+//             const response = await axios.post("http://localhost:7000/berita&program", formData, {
+//                 headers: {
+//                     "Content-Type": "multipart/form-data",
+//                 },
+//             });
+
+//             console.log("Response data:", response.data);
+//             toast.success("Data berhasil diunggah ke database", {
+//                 position: "top-right",
+//                 autoClose: 5000,
+//                 hideProgressBar: false,
+//                 closeOnClick: true,
+//                 pauseOnHover: true,
+//                 draggable: true,
+//                 progress: undefined,
+//             });
+//         } catch (error) {
+//             console.error("Error posting data:", error);
+//             toast.error("Gagal mengunggah data ke database", {
+//                 position: "top-right",
+//                 autoClose: 5000,
+//                 hideProgressBar: false,
+//                 closeOnClick: true,
+//                 pauseOnHover: true,
+//                 draggable: true,
+//                 progress: undefined,
+//             });
+//         } finally {
+//             setLoading(false); // menunjukkan bahwa proses loading selesai
+//         }
+//     };
+
+//     return (
+//         <div>
+//             <h1 className="text-2xl font-bold mb-4">Welcome to the Berita dan program</h1>
+//             <form onSubmit={handleSubmit}>
+//                 <div className="mb-4">
+//                     <label htmlFor="gambar" className="block text-gray-600 font-medium">
+//                         {" "}
+//                         Gambar Thumbnail:{" "}
+//                     </label>
+//                     <input
+//                         type="file"
+//                         id="gambar"
+//                         className="border border-gray-300 p-2 w-full"
+//                         multiple
+//                         onChange={handleImageChange}
+//                     />
+//                 </div>
+//                 <div className="mb-4">
+//                     <label htmlFor="judul" className="block text-gray-600 font-medium">
+//                         {" "}
+//                         Judul:{" "}
+//                     </label>
+//                     <input
+//                         type="text"
+//                         id="judul"
+//                         className="border border-gray-300 p-2 w-full"
+//                         onChange={handleJudulChange}
+//                     />
+//                 </div>
+//                 <div className="mb-4">
+//                     <label htmlFor="deskripsi" className="block text-gray-600 font-medium">
+//                         {" "}
+//                         Deskripsi Berita:{" "}
+//                     </label>
+//                     <div className="border h-80 pb-10 font-small overflow-hidden">
+//                         <ReactQuill value={deskripsi} onChange={handleDeskripsiChange} className="h-full" />
+//                     </div>
+//                 </div>
+//                 <button type="submit" className="bg-dark text-white py-2 px-4 rounded hover:bg-blue-600">
+//                     {" "}
+//                     Simpan{" "}
+//                 </button>
+//             </form>
+//         </div>
+//     );
+// }
+
+// export default FormBerita;
+
 "use client"
 
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer,toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { log } from "console";
 
 function FormBerita() {
+    // const [image1, setImages1] = useState<File[]>([]);
+    // const [image2, setImages2] = useState<File[]>([]);
+    // const [image3, setImages3] = useState<File[]>([]);
     const [images, setImages] = useState<File[]>([]);
     const [deskripsi, setDeskripsi] = useState<string>("");
-    const [judul, setJudul] = useState<string>("");
+    const [title, settitle] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+
+
+    const saveData = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const formData = new FormData();
+            formData.append('title', title);
+            formData.append('deskripsi', deskripsi);
+            for (let i = 0; i < images.length; i++) {
+                const blob = new Blob([images[i]], { type: images[i].type });
+                formData.append('images', blob, images[i].name);
+            }
+    
+            await axios.post("http://localhost:7000/berita&program", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            toast.success("Data berhasil diunggah ke database"); // Menambahkan notifikasi saat data berhasil diunggah
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const axiosError = error;
+                if (axiosError.response) {
+                    toast.error("Gagal mengunggah data ke database");
+                }
+            }
+        }
+    };
+
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
-            const selectedImages = Array.from(event.target.files).slice(0, 3); // Maksimal 3 gambar
+            const selectedImages = Array.from(event.target.files).slice(0, 3); // maksimal 3 gambar
             setImages(selectedImages);
+            console.log(selectedImages)
         }
     };
 
@@ -219,60 +378,15 @@ function FormBerita() {
         setDeskripsi(value);
     };
 
-    const handleJudulChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setJudul(event.target.value);
-    };
-
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-        try {
-            setLoading(true); // menunjukkan bahwa proses loading dimulai
-            const formData = new FormData();
-            formData.append("deskripsi", deskripsi);
-            formData.append("judul", judul);
-
-            if (images.length > 0) {
-                for (let i = 0; i < images.length; i++) {
-                    formData.append(`image${i + 1}`, images[i]);
-                }
-            }
-
-            const response = await axios.post("http://localhost:7000/berita&program", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-
-            console.log("Response data:", response.data);
-            toast.success("Data berhasil diunggah ke database", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (error) {
-            console.error("Error posting data:", error);
-            toast.error("Gagal mengunggah data ke database", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } finally {
-            setLoading(false); // menunjukkan bahwa proses loading selesai
-        }
+    const handletitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        settitle(event.target.value);
     };
 
     return (
         <div>
+            <ToastContainer position="bottom-right" />
             <h1 className="text-2xl font-bold mb-4">Welcome to the Berita dan program</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={saveData}>
                 <div className="mb-4">
                     <label htmlFor="gambar" className="block text-gray-600 font-medium">
                         {" "}
@@ -286,16 +400,42 @@ function FormBerita() {
                         onChange={handleImageChange}
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="judul" className="block text-gray-600 font-medium">
+                {/* <div className="mb-4">
+                    <label htmlFor="gambar" className="block text-gray-600 font-medium">
                         {" "}
-                        Judul:{" "}
+                        Gambar Thumbnail:{" "}
+                    </label>
+                    <input
+                        type="file"
+                        id="gambar"
+                        className="border border-gray-300 p-2 w-full"
+                        multiple
+                        onChange={handleImageChange}
+                    />
+                </div> */}
+                {/* <div className="mb-4">
+                    <label htmlFor="gambar" className="block text-gray-600 font-medium">
+                        {" "}
+                        Gambar Thumbnail:{" "}
+                    </label>
+                    <input
+                        type="file"
+                        id="gambar"
+                        className="border border-gray-300 p-2 w-full"
+                        multiple
+                        onChange={handleImageChange}
+                    />
+                </div> */}
+                <div className="mb-4">
+                    <label htmlFor="title" className="block text-gray-600 font-medium">
+                        {" "}
+                        title:{" "}
                     </label>
                     <input
                         type="text"
-                        id="judul"
+                        id="title"
                         className="border border-gray-300 p-2 w-full"
-                        onChange={handleJudulChange}
+                        onChange={handletitleChange}
                     />
                 </div>
                 <div className="mb-4">
