@@ -1,0 +1,36 @@
+import React from 'react'
+
+function zakat_profesiForm() {
+    return (
+        <div className='flex pt-8 lg:space-x-10 md:space-x-5 flex-col md:flex-row '>
+            <div>
+                <div className="mb-6">
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Harga Beras</label>
+                    <input id="harga_beras" className="shadow-sm bg-gray-50 border border-dark text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-80 p-2.5 " required/>
+                </div>
+                <div className="mb-6">
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Nilai Penghasilan Perbulan / Deposito</label>
+                    <input id="nilai_penghasilanPerbulan" className="shadow-sm bg-gray-50 border border-dark text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-80 p-2.5 " required/>
+                </div>
+                <div className="mb-6">
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Pendapatan Lain</label>
+                    <input id="Pendapatan Lain" className="shadow-sm bg-gray-50 border border-dark text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-80 p-2.5 " required/>
+                </div>
+                <div className="mb-6">
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Pengeluaran Perbulan dan Hutang</label>
+                    <input id="Nilai_pengeluaranDanHutang" className="shadow-sm bg-gray-50 border border-dark text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-80 p-2.5 " required/>
+                </div>
+                <button className="mb-6 text-white bg-orange hover:border-tosca focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-centera">Hitung Zakat</button>
+            </div>
+            <div className="flex-grow p-6 border bg-light border-dark rounded-lg shadow">
+                <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Zakat Anda</h1>
+                <h2 className='font-medium text-base'>Nisab: </h2>
+                <h2 className=' font-medium text-base pb-4'>Nisab Zakat Anda: </h2>
+                <h1 className='font-bold text-orange text-center  '>Anda Wajib Zakat</h1>
+                <h1 className='font-bold text-orange text-center'>Anda Tidak Wajib Zakat</h1>
+            </div>
+        </div>    
+    )
+}
+
+export default zakat_profesiForm

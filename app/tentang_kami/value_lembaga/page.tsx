@@ -14,11 +14,11 @@ function value_lembaga() {
                     Value Lembaga
                 </h1>
                 <ol className='list-decimal pl-4 pt-4 space-y-6 text-sm md:text-base lg:text-xl'>
-                    <li>Humanitarian</li>
+                    <li className='font-bold'>Humanitarian</li>
                     <span>Memfasilitasi segala upaya kegiatan sosial dengan tulus untuk seluruh masyarakat.</span>
-                    <li>Trusted</li>
+                    <li className='font-bold'>Trusted</li>
                     <span>Menjalankan lembaga dengan profesional, transparan dan jujur.</span>
-                    <li>Collaborative</li>
+                    <li className='font-bold'>Collaborative</li>
                     <span>Bekerjasama untuk menciptakan kehidupan yang lebih baik.</span>
                 </ol>
             </div>

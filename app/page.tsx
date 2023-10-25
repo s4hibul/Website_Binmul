@@ -1,14 +1,29 @@
-"use client";
-import React from "react";
-import Carousel from "@/components/carousel";
+// import React from "react";
+// // import Carousel from "@/components/carousel";
+// import Navbar from "@/components/navbar";
 
-const Beranda: React.FC = () => {
-    return (
-        <div className="flex-grow flex-col min-h-screen">
-            <Carousel />
-            <div>Ini adalah konten lain yang ingin ditampilkan di halaman beranda.</div>
-        </div>
-    );
-};
+// const Beranda: React.FC = () => {
+//     return (
+//         <div className="container">
+//             <Navbar />
+//             {/* <Carousel /> */}
+//         </div>
+//     );
+// };
 
-export default Beranda;
+// export default Beranda;
+
+"use client"
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+function HomePage() {
+    const router = useRouter();
+
+    useEffect(() => {
+        router.push('/beranda');
+    }, [router]);
+}
+
+
+export default HomePage;

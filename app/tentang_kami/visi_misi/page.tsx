@@ -36,37 +36,6 @@ function visi_misi() {
                             </li>
                         </ol>
                     </div>
-                    <h1 className='mt-12 lg:mt-24 font-bold text-base md:text-lg lg:text-xl'>
-                    Kegiatan
-                    </h1>
-                    <div className='text-xs md:text-base lg:text-xl'>
-                        <p>
-                        Kegiatan yang telah dilaksanakan yayasan Bina Mulia dalam kurun waktu 1 (satu) tahun
-                        terakhir diantaranya sebagai berikut
-                        </p>
-                        <ol className='list-decimal pl-4 pt-4 space-y-6'>
-                            <li>Gebyar Ramadhan dan Buka Bersama</li>
-                            <span>Gebyar ramadhan merupakah salah satu program yayasan Bina Mulia yang diselenggarakan dalam rangka menghidupkan dan memeriahkan Ramadhan 1443 H/2022 M. Kegiatan ini dilaksanakan dalam bentuk kegiatan Kajian, Santunan kepada anak yatim, dan buka bersama. Sasaran kegiatan ini adalah masyarakat dan anak yatim di sekitar Masjid Baitul Muttaqin, KM 14.</span>
-                            <li>Diklatsar Korsa dan Bina Mulia Mengabdi 1</li>
-                            <span>Pendidikan dan Pelatihan Dasar Korsa merupakan kegiatan pembentukan dan pengembangan organisasi KORSA agar berkembang dan memberikan dampak nyata di masyarakat. Dalam kegiatan ini, relawan dibekali berbagai keterampilan dasar sebagai seorang relawan, terutama dalam bidang kebencanaan. Materi yang disampaikan antara lain, First Aids, Navigasi Darat, SAR Air, dan Dasar Pemadam Kebakaran. Dalam kegiatan ini, relawan juga diajak untuk terjun langsung ke masyarakat dengan terlibat dalam perawatan dan renovasi masjid di sekitar lokasi pelatihan.</span>
-                            <li>Jum’at Berkah Yayasan Bina Mulia</li>
-                            <span>Kegiatan ini merupakan kegiatan pembagian makan gratis untuk para pejuang keluarga. Kegiatan ini dilaksanakan setiap 2 (dua) bulan sekali.</span>
-                            <li>Bina Mulia Mengabdi 2</li>
-                            <span>Bina Mulia MEngabdi 2 merupakan kegiatan pengabdian dengan sasaran lansia produktif di kelurahan Teritip. Dalam kegiatan ini, relawan didistribusikan untuk membersamai dan membantu kegiatan lansia. </span>
-                            <li>Cek Kesehatan Gratis</li>
-                            <span>Kegiatan ini merupakan salah satu program yang dilaksanakan sebagai salah satu bentuk kepedulian terhadap kesehatan. </span>
-                            <li>Upgrading Korsa</li>
-                            <span>Kegiatan ini merupakan kegiatan peningkatan pengetahuan dan kemampuan relawan Korsa dalam bidang kerelawanan. Kegiatan ini juga dilaksanakan dalam rangka silaturahmi antar sesama anggota, pengurus, pembina yayasan serta komunitas sosial eksternal</span>
-                            <li>Bina Mulia Mengabdi 3</li>
-                            <span>Bina Mulia Mengabdi 3 merupakan kegiatan pengabdian dengan sasaran lansia produktif di kelurahan Lamaru. Dalam kegiatan ini, relawan didistribusikan untuk membersamai dan membantu kegiatan lansia.</span>
-                            <li>Festival Ramadhan</li>
-                            <span>Festival Ramadhan merupakan kegiatan yang dilaksankan dalam rangka menghidupkan dan memeriahkan bulan ramadhan. Kegiatan ini dilaksanakan dalam bentuk kegiatan kajian, belanja bersama anak yatim, dan buka bersama. Kegiatan ini dilaksanakan dalam rangka agar anak-anak yatim merasakan senangnya memilih dan membeli baju lebaran mereka.</span>
-                            <li className='font-italic'>Motivtion class</li>
-                            <span>Kegiatan ini dilaksanakan dalam rangka meningkatkan semangat adik-adik di kawasan pemulung tumaritis untuk belajar dan mengejar cita-cita</span>
-                            <li>Qurban Mulia</li>
-                            <span>Qurban Mulia merupakan kegiatan pemotongan dan pendistribusian daging qurban ke pelosok desa.</span>
-                        </ol>
-                    </div>
                 </div>
             </div>
         </div>

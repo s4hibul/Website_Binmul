@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
+    "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,6 +24,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/tentang_kami/visi_misi", "app/tentang_kami/visi_misi"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/tentang_kami/visi_misi", "app/tentang_kami/visi_misi", "components/navigasi_cardBerita.tsx.disabled", "components/zakat_profesiForm.tsx.disabled", "components/zakat_perdaganganForm copy.tsx", "components/unused component/zakat_perdaganganForm copy.tsx.disabled", "app/PageWithoutLayout.tsx.disabled", "app/(public)/layout.tsx", "app/tentang_kami/layout.tsx.disabled"],
   "exclude": ["node_modules"]
 }
