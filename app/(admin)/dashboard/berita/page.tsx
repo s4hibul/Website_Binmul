@@ -166,8 +166,8 @@
 
 "use client"
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
 import axios from 'axios';
+import Link from 'next/link';
 
 interface DataItem {
     id: number;
@@ -212,44 +212,45 @@ const BeritaTable: React.FC = () => {
     };
 
     return (
-      <BrowserRouter>
-        <table className="min-w-max w-full table-auto">
-          <thead>
-            <tr className="bg-gray-200 text-dark-600 uppercase text-sm leading-normal">
-              <th className="py-3 px-6 text-left">Title</th>
-              <th className="py-3 px-6 text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-600 text-sm font-light">
-            {data.map((item) => (
-              <tr
-                key={item.id}
-                className="border-b border-dark-200 hover:bg-gray-100"
-              >
-                <td className="py-3 px-6 text-left">{item.title}</td>
-                <td className="py-3 px-6 text-center">
-                  <Link to={`/dashboard/berita/form_berita`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
-                      Add
-                    </button>
-                  </Link>
-                  <Link to={`/dashboard/berita/update_berita/${item.id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
-                      Update
-                    </button>
-                  </Link>
-                  <button
-                    className="bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </BrowserRouter>
+        <div>
+            <Link href={`/dashboard/berita/form_berita`}>
+                <button className="bg-orange hover:bg-blue-700 mb-6 text-white font-bold py-2 px-4 rounded">
+                    Tambah Berita
+                </button>
+            </Link>
+            <table className="min-w-max w-full table-auto">
+                <thead>
+                    <tr className="bg-gray-200 text-dark-600 bg-light uppercase text-sm leading-normal">
+                        <th className="py-3 px-6 text-left">Title</th>
+                        <th className="py-3 px-6 text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody className="text-gray-600 text-sm font-light">
+                    {data.map((item) => (
+                        <tr
+                            key={item.id}
+                            className="border-b border-dark-200 hover:bg-gray-100"
+                        >
+                            <td className="py-3 px-6 text-left font-semibold">{item.title}</td>
+                            <td className="py-3 px-6 text-center">
+                                <Link href={`/dashboard/berita/update_berita/${item.id}`}>
+                                    <button className="bg-light hover:bg-blue-700 text-black font-bold py-2 px-4 rounded mr-2">
+                                        Update
+                                    </button>
+                                </Link>
+                                <button
+                                    className="bg-dark hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={() => handleDelete(item.id)}
+                                >
+                                    Delete
+                                </button>
+                            </td>
+
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 };
 

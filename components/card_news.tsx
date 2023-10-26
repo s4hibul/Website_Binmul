@@ -65,10 +65,10 @@
 
 // // export default CardNews;
 
+
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import axios from 'axios';
 import Link from 'next/link';
+import axios from 'axios';
 
 interface Berita {
     id: number;
@@ -78,7 +78,7 @@ interface Berita {
 
 interface CardNewsProps {
     currentPage: number;
-    news: Berita;
+    // news: Berita;
 }
 
 const cardsPerPage = 8;
@@ -105,39 +105,37 @@ const CardNews: React.FC<CardNewsProps> = ({ currentPage }) => {
     const totalPage = Math.ceil(data.length / cardsPerPage);
 
     return (
-        <Router>
-            <div className='flex flex-row flex-wrap justify-evenly'>
-                {data.slice(startIndex, endIndex).map((news) => (
-                    <div className='max-w-sm bg-light mb-8 rounded-lg shadow' key={news.id}>
-                        {news.image1 ? (
-                            <img
-                                className='rounded-t-lg w-full h-64 object-cover object-center'
-                                src={news.image1}
-                                alt={news.image1}
-                            />
-                        ) : (
-                            <img
-                                className='rounded-t-lg w-full h-64 object-cover object-center'
-                                src='placeholder-image-url'
-                                alt='Placeholder'
-                            />
-                        )}
-                        <div className='p-5'>
-                            <a>
-                                <h5 className='mb-4 text-lg md:text-2xl font-bold tracking-tight text-gray-900 truncate'>
-                                    {news.title}
-                                </h5>
-                            </a>
-                            <Link href={`/berita_program/detail_berita/${news.id}`}>
-                                <button className='inline-flex items-center px-3 py-2 ml-2 text-sm font-medium text-center text-white bg-orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'>
-                                    Selengkapnya
-                                </button>
-                            </Link>
-                        </div>
+        <div className='flex flex-row flex-wrap justify-evenly'>
+            {data.slice(startIndex, endIndex).map((news) => (
+                <div className='max-w-sm bg-light mb-8 rounded-lg shadow' key={news.id}>
+                    {news.image1 ? (
+                        <img
+                            className='rounded-t-lg w-full h-64 object-cover object-center'
+                            src={news.image1}
+                            alt={news.image1}
+                        />
+                    ) : (
+                        <img
+                            className='rounded-t-lg w-full h-64 object-cover object-center'
+                            src='placeholder-image-url'
+                            alt='Placeholder'
+                        />
+                    )}
+                    <div className='p-5'>
+                        <a>
+                            <h5 className='mb-4 text-lg md:text-2xl font-bold tracking-tight text-gray-900 truncate'>
+                                {news.title}
+                            </h5>
+                        </a>
+                        <Link href={`/berita_program/detail_berita/${news.id}`}>
+                            <button className='inline-flex items-center px-3 py-2 ml-2 text-sm font-medium text-center text-white bg-orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'>
+                                Selengkapnya
+                            </button>
+                        </Link>
                     </div>
-                ))}
-            </div>
-        </Router>
+                </div>
+            ))}
+        </div>
     );
 }
 export default CardNews;

@@ -198,6 +198,14 @@
 import React, { useState } from 'react';
 import { NumericFormat } from 'react-number-format';
 
+const formatRupiah = (number: number | null) => {
+    if (!number) return "";
+    return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+    }).format(number);
+};
+
 const ZakatMaalForm = () => {
     const [hargaEmas, setHargaEmas] = useState<number | null>(null);
     const [nilaiTabungan, setNilaiTabungan] = useState<number | null>(null);
@@ -258,49 +266,46 @@ const ZakatEmasForm = () => {
     };
 
     return (
-        <div className='flex place-items-start justify-center pt-8 lg:space-x-10 md:space-x-5 flex-col md:flex-row'>
-            <div className='max-w-sm'>
+        <div className="flex justify-center pt-8 lg:space-x-10 md:space-x-5 flex-col md:flex-row">
+            <div className="max-w-sm">
                 <div className="mb-6">
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Harga Emas</label>
-                    <NumericFormat
-                        id="harga_emas"
-                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-80 p-2.5"
-                        onValueChange={({ floatValue }) => setHargaEmas(floatValue)}
-                        thousandSeparator={true}
-                        prefix={'Rp '}
-                        decimalSeparator={','}
-                        allowNegative={false}
-                        required
-                    />
+                    <label className="block mb-2 text-sm font-medium text-gray-900">
+                        Harga Emas
+                    </label>
+                    <input id="harga_emas"
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-80 p-2.5 "
+                        required />
                 </div>
                 <div className="mb-6">
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Berat Emas Yang Dimiliki selama 1 Tahun (gram)</label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">
+                        Berat Emas Yang Dimiliki selama 1 Tahun (gram)
+                    </label>
                     <input
-                        id="berat_emas"
-                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-80 p-2.5 "
+                        type="number"
+                        id="beratEmas"
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-80 p-2.5"
                         onChange={(e) => setBeratEmas(parseFloat(e.target.value))}
                         required
                     />
                 </div>
                 <button
-                    className="mb-6 w-80 text-white bg-orange hover:border-tosca focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-centera"
+                    className="mb-6 w-80 text-white bg-orange hover:bg-tosca focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                     onClick={handleHitungZakat}
                 >
                     Hitung Zakat
                 </button>
             </div>
             <div className="flex-grow max-w-2xl max-h-sm p-6 items-center bg-light rounded-lg shadow">
-                <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Zakat Anda</h1>
-                <h2 className='font-medium text-base'>Nisab: </h2>
-                <NumericFormat
-                    className=' font-medium text-base pb-4'
-                    value={nilaiZakat}
-                    currency="IDR"
-                    options={{
-                        thousandSeparator: '.',
-                        decimalSeparator: ',',
-                    }}
-                />
+                <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">
+                    Zakat Anda
+                </h1>
+                <h2 className="font-medium text-base">Nisab: 85 Gram Emas </h2>
+                <h2 className="font-medium text-base pb-4">
+                    Nilai Zakat Anda: {formatRupiah(nilaiZakat)}
+                </h2>
+                <h1 className="font-bold text-orange text-center">
+                    {nilaiZakat ? (nilaiZakat > 85 ? "Anda Wajib Zakat" : "Anda Tidak Wajib Zakat") : ""}
+                </h1>
             </div>
         </div>
     );
