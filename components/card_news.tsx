@@ -66,8 +66,9 @@
 // // export default CardNews;
 
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
+import Link from 'next/link';
 
 interface Berita {
     id: number;
@@ -127,7 +128,7 @@ const CardNews: React.FC<CardNewsProps> = ({ currentPage }) => {
                                     {news.title}
                                 </h5>
                             </a>
-                            <Link to ={`/berita_program/detail_berita/${news.id}`}>
+                            <Link href={`/berita_program/detail_berita/${news.id}`}>
                                 <button className='inline-flex items-center px-3 py-2 ml-2 text-sm font-medium text-center text-white bg-orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'>
                                     Selengkapnya
                                 </button>
