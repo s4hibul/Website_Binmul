@@ -188,6 +188,7 @@ const BeritaTable: React.FC = () => {
             const response = await axios.get('http://localhost:7000/berita&program');
             if (Array.isArray(response.data.data)) {
                 setData(response.data.data);
+                console.log(response.data.data);
             } else {
                 console.error('Data received is not an array:', response.data.data);
             }
@@ -204,7 +205,6 @@ const BeritaTable: React.FC = () => {
         try {
             const response = await axios.delete(`http://localhost:7000/berita&program/${id}`);
             console.log(`Item with id ${id} has been deleted`, response.data);
-            // Lakukan pembaruan data setelah menghapus
             fetchData();
         } catch (error) {
             console.error('Error deleting item:', error);
@@ -212,31 +212,44 @@ const BeritaTable: React.FC = () => {
     };
 
     return (
-        <BrowserRouter>
-            <table className="min-w-max w-full table-auto">
-                <thead>
-                    <tr className="bg-gray-200 text-dark-600 uppercase text-sm leading-normal">
-                        <th className="py-3 px-6 text-left">Title</th>
-                        <th className="py-3 px-6 text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody className="text-gray-600 text-sm font-light">
-                    {data.map((item) => (
-                        <tr key={item.id} className="border-b border-dark-200 hover:bg-gray-100">
-                            <td className="py-3 px-6 text-left">{item.title}</td>
-                            <td className="py-3 px-6 text-center">
-                                <Link to={`/dashboard/berita/update_berita/${item.id}`}>
-                                    <button className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
-                                        Update
-                                    </button>
-                                </Link>
-                                <button className="bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded" onClick={() => handleDelete(item.id)}>Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </BrowserRouter>
+      <BrowserRouter>
+        <table className="min-w-max w-full table-auto">
+          <thead>
+            <tr className="bg-gray-200 text-dark-600 uppercase text-sm leading-normal">
+              <th className="py-3 px-6 text-left">Title</th>
+              <th className="py-3 px-6 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody className="text-gray-600 text-sm font-light">
+            {data.map((item) => (
+              <tr
+                key={item.id}
+                className="border-b border-dark-200 hover:bg-gray-100"
+              >
+                <td className="py-3 px-6 text-left">{item.title}</td>
+                <td className="py-3 px-6 text-center">
+                  <Link to={`/dashboard/berita/form_berita`}>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
+                      Add
+                    </button>
+                  </Link>
+                  <Link to={`/dashboard/berita/update_berita/${item.id}`}>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
+                      Update
+                    </button>
+                  </Link>
+                  <button
+                    className="bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded"
+                    onClick={() => handleDelete(item.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </BrowserRouter>
     );
 };
 

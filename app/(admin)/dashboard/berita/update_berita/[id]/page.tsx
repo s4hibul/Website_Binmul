@@ -1,14 +1,18 @@
+    "use client"
+    
     import React, { useState } from "react";
-    import { useParams, useNavigate, Navigate } from 'react-router-dom';
+    // import { useParams, useNavigate, } from 'react-router-dom';
     import ReactQuill from "react-quill";
     import "react-quill/dist/quill.snow.css";
     import axios from "axios";
     import { ToastContainer, toast } from "react-toastify";
     import "react-toastify/dist/ReactToastify.css";
+    import { usePathname } from "next/navigation";
+
 
     const FormUpdateBerita = () => {
-        const { id } = useParams();
-        const navigate = useNavigate();
+        const router = usePathname().split("/");
+        const id = router[router.length - 1];
         const [images1, setImages1] = useState<File[]>([]);
         const [images2, setImages2] = useState<File[]>([]);
         const [images3, setImages3] = useState<File[]>([]);
@@ -40,7 +44,7 @@
                 });
 
                 toast.success("Data berhasil diperbarui");
-                navigate('/dashboard/berita'); // Mengarahkan kembali ke halaman /dashboard/berita setelah berhasil update
+                router.push("/dashboard/berita"); // Mengarahkan kembali ke halaman /dashboard/berita setelah berhasil update
             } catch (error) {
                 if (axios.isAxiosError(error)) {
                     toast.error("Gagal memperbarui data");
