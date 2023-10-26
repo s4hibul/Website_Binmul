@@ -119,7 +119,7 @@ interface NewsItem {
     image1: string;
     title: string;
     updatedAt: string;
-  }
+}
 
 
 const Template_DetailBerita: React.FC = () => {
@@ -185,15 +185,15 @@ const Template_DetailBerita: React.FC = () => {
             </div>
             {/* bagian isi */}
             <div className="flex flex-auto flex-col mx-12 lg:mx-24 px-6 lg:flex-row space-y-12 lg:space-x-12 text-xs md:text-base lg:text-xl pt-4 md:pt-6 lg:pt-8">
-                <div className="lg:w-2/3">
+                <div className="lg:w-2/3 mb-12">
                     <img src={image1} alt="Image1" className="bg-cover bg-center pb-4" />
                     {deskripsi && (
                         <div>
-                            <p>{deskripsi.slice(0)}</p>
+                            <div dangerouslySetInnerHTML={{ __html: deskripsi.slice(0) }} />
                             <img src={image2} alt="Image2" className="bg-cover bg-center pb-4" />
-                            <p>{deskripsi.slice(1)}</p>
+                            <div dangerouslySetInnerHTML={{ __html: deskripsi.slice(1) }} />
                             <img src={image3} alt="Image3" className="bg-cover bg-center pb-4" />
-                            <p>{deskripsi.slice(3)}</p>
+                            <div dangerouslySetInnerHTML={{ __html: deskripsi.slice(3) }} />
                         </div>
                     )}
                 </div>
