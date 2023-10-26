@@ -72,7 +72,7 @@ const Navigasi_card: React.FC = () => {
                     )}
                 </div>
             </div>
-    </div>
+        </div>
     );
 };
 

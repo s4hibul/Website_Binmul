@@ -15,7 +15,7 @@ interface Akun {
 
     useEffect(() => {
         // Mengambil data akun dari server menggunakan Axios
-        Axios.get('http://localhost:7000/GET/role') // Ganti URL_API_ANDA dan endpoint sesuai dengan API Anda
+        Axios.get('http://localhost:7000/user') // Ganti URL_API_ANDA dan endpoint sesuai dengan API Anda
         .then((response) => {
             setAkunList(response.data); // Menyimpan data akun ke dalam state
         })

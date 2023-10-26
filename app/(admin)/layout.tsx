@@ -11,9 +11,9 @@ return (
             <ul className="space-y-4">
             <li className="p-4 hover:bg-tosca hover:text-white"><a href="/">Home</a></li>
             <li className="p-4 hover:bg-tosca hover:text-white"><a href="/dashboard">Carrousel</a></li>
-            <li className="p-4 hover:bg-tosca hover:text-white"><a href="/dashboard/form_berita">Berita & Program</a></li>
+            <li className="p-4 hover:bg-tosca hover:text-white"><a href="/dashboard/berita">Berita & Program</a></li>
             <li className="p-4 hover:bg-tosca hover:text-white"><a href="">Carer</a></li>
-            <li className="p-4 hover:bg-tosca hover:text-white"><a href="">Galeri</a></li>
+            <li className="p-4 hover:bg-tosca hover:text-white"><a href="/dashboard/galeri">Galeri</a></li>
             <li className="p-4 hover:bg-tosca hover:text-white"><a href="/dashboard/akun">Akun</a></li>
             </ul>
         </div>
