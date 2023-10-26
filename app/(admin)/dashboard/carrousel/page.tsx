@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 //   images: string;
 // }
 
-const Carou: React.FC = () => {
+const Carrousel: React.FC = () => {
   const [data, setData] = useState<any>(null);
   const router = usePathname().split("/");
 
@@ -24,7 +24,7 @@ const Carou: React.FC = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:7000/banner");
-      setData(response.data);
+      setData(response.data.data);
       // console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -36,7 +36,7 @@ const Carou: React.FC = () => {
 
   const handleUpdate = (id: number) => {
     console.log(`Update item with id ${id}`);
-    router.push(`/dashboard/berita/update_berita/${id}`);
+    router.push(`/dashboard/carrousel/editCarousel/${id}`);
   };
 
   const handleDelete = async (id: number) => {
@@ -61,31 +61,38 @@ const Carou: React.FC = () => {
         </tr>
       </thead>
       <tbody className="text-gray-600 text-sm font-light">
-        {data && (
-          <tr
-            key={data.id}
-            className="border-b border-dark-200 hover:bg-gray-100"
-          >
-            <td className="py-3 px-6 text-left">{data.title}</td>
-            <td className="py-3 px-6 text-center">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded"
-                onClick={() => handleUpdate(data.id)}
-              >
-                Update
-              </button>
-              <button
-                className="bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded"
-                onClick={() => handleDelete(data.id)}
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        )}
+        {data &&
+          data.map((item: any, index: number) => (
+            <tr
+              key={index}
+              className="border-b border-dark-200 hover:bg-gray-100"
+            >
+              <td className="py-3 px-6 text-left">
+                <img
+                  src={item.banner}
+                  alt=""
+                  style={{ maxWidth: "100px", maxHeight: "100px" }}
+                />
+              </td>
+              <td className="py-3 px-6 text-center">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded"
+                  onClick={() => handleUpdate(item.id)}
+                >
+                  Update
+                </button>
+                <button
+                  className="bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded"
+                  onClick={() => handleDelete(item.id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );
 };
 
-export default Carou;
+export default Carrousel;
