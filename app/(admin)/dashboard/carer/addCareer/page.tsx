@@ -81,7 +81,7 @@ function FormBerita() {
     <div>
       <ToastContainer position="bottom-right" />
       <h1 className="text-2xl font-bold mb-4">
-        Welcome to the Berita dan program
+        Tambah Lowongan
       </h1>
       <form onSubmit={saveData}>
         <div className="mb-4">

@@ -213,6 +213,7 @@ const BeritaTable: React.FC = () => {
 
     return (
         <div>
+            <h1 className="text-2xl font-bold mb-4">Welcome to Berita & Program</h1>
             <Link href={`/dashboard/berita/form_berita`}>
                 <button className="bg-orange hover:bg-blue-700 mb-6 text-white font-bold py-2 px-4 rounded">
                     Tambah Berita
